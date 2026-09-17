@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { Menu, Search, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,6 +12,7 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   const { cart } = useCart();
+  const { user, signOut } = useAuth();
   const cartCount =
     cart?.reduce((total, item) => total + item.quantity, 0) || 0;
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -143,16 +145,34 @@ export default function Header() {
             </Link>
 
             <div className="hidden sm:flex items-center space-x-2">
-              <Link href="/login">
-                <Button variant="ghost" size="sm" className="text-sm">
-                  Connexion
-                </Button>
-              </Link>
-              <Link href="/register">
-                <Button size="sm" variant="default" className="text-sm">
-                  Inscription
-                </Button>
-              </Link>
+              {user ? (
+                <>
+                  <Link href="/account" className="max-w-32 truncate text-xs text-muted-foreground hover:text-primary">
+                    {user.email}
+                  </Link>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-sm"
+                    onClick={() => void signOut()}
+                  >
+                    Déconnexion
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login">
+                    <Button variant="ghost" size="sm" className="text-sm">
+                      Connexion
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button size="sm" variant="default" className="text-sm">
+                      Inscription
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

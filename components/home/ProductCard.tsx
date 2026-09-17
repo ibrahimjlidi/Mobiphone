@@ -3,14 +3,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import { FALLBACK_PHONE_IMAGE, resolveProductImage } from "@/lib/productImage";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types/product";
 import { Check, Eye, Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }: { product: Product }) {
   const [isLiked, setIsLiked] = useState(false);
@@ -19,10 +22,23 @@ export default function ProductCard({ product }: { product: Product }) {
   const [justAdded, setJustAdded] = useState(false);
 
   const { addToCart } = useCart();
+  const { user, isConfigured } = useAuth();
   const { formatPrice } = useCurrency();
+  const router = useRouter();
   const [imageSrc, setImageSrc] = useState(() =>
     resolveProductImage(product.image)
   );
+
+  useEffect(() => {
+    if (!user || !isConfigured) return;
+    getSupabaseBrowserClient()
+      .from("favorites")
+      .select("product_id")
+      .eq("user_id", user.id)
+      .eq("product_id", product.id)
+      .maybeSingle()
+      .then(({ data }) => setIsLiked(Boolean(data)));
+  }, [isConfigured, product.id, user]);
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -46,10 +62,21 @@ export default function ProductCard({ product }: { product: Product }) {
     setTimeout(() => setJustAdded(false), 2000);
   };
 
-  const handleToggleLike = (e: React.MouseEvent) => {
+  const handleToggleLike = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsLiked(!isLiked);
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+    const supabase = getSupabaseBrowserClient();
+    if (isLiked) {
+      await supabase.from("favorites").delete().eq("user_id", user.id).eq("product_id", product.id);
+      setIsLiked(false);
+    } else {
+      await supabase.from("favorites").insert({ user_id: user.id, product_id: product.id });
+      setIsLiked(true);
+    }
   };
 
   return (

@@ -3,15 +3,32 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/context/AuthContext";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { ArrowLeft, LockKeyhole, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 export default function LoginPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isConfigured } = useAuth();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+    const formData = new FormData(event.currentTarget);
+    const { error: authError } = await getSupabaseBrowserClient().auth.signInWithPassword({
+      email: String(formData.get("email")),
+      password: String(formData.get("password")),
+    });
+    setIsSubmitting(false);
+    if (authError) {
+      setError(authError.message);
+      return;
+    }
     setIsSubmitted(true);
   };
 
@@ -34,7 +51,11 @@ export default function LoginPage() {
             </div>
           </CardHeader>
           <CardContent>
-            {isSubmitted ? (
+            {!isConfigured ? (
+              <p className="rounded-md bg-destructive/10 p-4 text-sm text-destructive">
+                L&apos;authentification n&apos;est pas configurée. Ajoutez les variables Supabase dans .env.local.
+              </p>
+            ) : isSubmitted ? (
               <div className="space-y-4 text-center">
                 <p className="font-medium text-foreground">Connexion en cours...</p>
                 <p className="text-sm text-muted-foreground">
@@ -61,8 +82,9 @@ export default function LoginPage() {
                 </div>
                 <Button type="submit" size="lg" className="w-full">
                   <LockKeyhole className="h-4 w-4" />
-                  Se connecter
+                  {isSubmitting ? "Connexion..." : "Se connecter"}
                 </Button>
+                {error && <p className="text-sm text-destructive">{error}</p>}
               </form>
             )}
 

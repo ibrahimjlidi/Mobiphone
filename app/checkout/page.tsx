@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
+import { useAuth } from "@/context/AuthContext";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/constants";
+import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { ArrowLeft, CheckCircle2, LockKeyhole, Truck } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
@@ -13,7 +15,10 @@ import { FormEvent, useState } from "react";
 export default function CheckoutPage() {
   const { cart, clearCart } = useCart();
   const { formatPrice } = useCurrency();
+  const { user, isConfigured } = useAuth();
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -22,8 +27,58 @@ export default function CheckoutPage() {
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 900;
   const total = subtotal + shipping;
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError("");
+    if (!isConfigured || !user) {
+      setError("Connectez-vous avant de confirmer votre commande.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const formData = new FormData(event.currentTarget);
+    const supabase = getSupabaseBrowserClient();
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .insert({
+        user_id: user.id,
+        total_dzd: total,
+        shipping_dzd: shipping,
+        delivery_first_name: String(formData.get("firstName")),
+        delivery_last_name: String(formData.get("lastName")),
+        delivery_email: String(formData.get("email")),
+        delivery_address: String(formData.get("address")),
+        delivery_city: String(formData.get("city")),
+        delivery_phone: String(formData.get("phone")),
+      })
+      .select("id")
+      .single();
+
+    if (orderError || !order) {
+      setIsSubmitting(false);
+      setError(orderError?.message ?? "La commande n'a pas pu être créée.");
+      return;
+    }
+
+    const { error: itemsError } = await supabase.from("order_items").insert(
+      cart.map((item) => ({
+        order_id: order.id,
+        product_id: item.id,
+        product_name: item.name,
+        product_image: item.image,
+        unit_price_dzd: item.price,
+        quantity: item.quantity,
+      }))
+    );
+
+    if (itemsError) {
+      await supabase.from("orders").delete().eq("id", order.id);
+      setIsSubmitting(false);
+      setError(itemsError.message);
+      return;
+    }
+
+    setIsSubmitting(false);
     setIsConfirmed(true);
     clearCart();
   };
@@ -127,9 +182,15 @@ export default function CheckoutPage() {
                 </label>
               </div>
 
-              <Button type="submit" size="lg" className="w-full">
+              {!user && (
+                <p className="text-sm text-muted-foreground">
+                  <Link href="/login" className="text-primary hover:underline">Connectez-vous</Link> pour enregistrer votre commande.
+                </p>
+              )}
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                 <LockKeyhole className="h-4 w-4" />
-                Confirmer la commande · {formatPrice(total)}
+                {isSubmitting ? "Enregistrement..." : `Confirmer la commande · ${formatPrice(total)}`}
               </Button>
             </form>
           </CardContent>

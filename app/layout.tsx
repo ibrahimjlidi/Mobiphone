@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import { shop } from "@/config/shop";
 import { CartProvider } from "@/context/CartContext";
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import { AuthProvider } from "@/context/AuthContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -28,13 +29,15 @@ export default function RootLayout({
       <body
         className={`${inter.className}  antialiased flex flex-col min-h-screen`}
       >
-        <CurrencyProvider>
-          <CartProvider>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </CartProvider>
-        </CurrencyProvider>
+        <AuthProvider>
+          <CurrencyProvider>
+            <CartProvider>
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </CartProvider>
+          </CurrencyProvider>
+        </AuthProvider>
       </body>
     </html>
   );
