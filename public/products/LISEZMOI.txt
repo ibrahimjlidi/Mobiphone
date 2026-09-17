@@ -1,0 +1,10 @@
+Placez ici les photos de vos téléphones (JPG ou PNG).
+
+Nommez-les comme dans data/products.csv, par exemple :
+  1-galaxy-a54.jpg
+  2-iphone-15.jpg
+
+Si le fichier local manque, la fiche produit affichera une image de secours.
+
+Après modification du CSV :
+  npm run import:products

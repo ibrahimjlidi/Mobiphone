@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Galaxy A54 5G",
+    "brand": "Samsung",
+    "storage": "128 Go",
+    "price": 62000,
+    "image": "/products/1-galaxy-a54.jpg",
+    "description": "Écran Super AMOLED 6.4 pouces triple capteur 50 MP. Idéal au quotidien."
+  },
+  {
+    "id": 2,
+    "name": "iPhone 15",
+    "brand": "Apple",
+    "storage": "128 Go",
+    "price": 185000,
+    "image": "/products/2-iphone-15.jpg",
+    "description": "Puce A16 Bionic Dynamic Island et USB-C. Photos nettes."
+  },
+  {
+    "id": 3,
+    "name": "Redmi Note 13 Pro",
+    "brand": "Xiaomi",
+    "storage": "256 Go",
+    "price": 48000,
+    "image": "/products/3-redmi-note-13.jpg",
+    "description": "Charge 67 W écran AMOLED 120 Hz capteur 200 MP."
+  },
+  {
+    "id": 4,
+    "name": "Pixel 8",
+    "brand": "Google",
+    "storage": "128 Go",
+    "price": 98000,
+    "image": "https://images.unsplash.com/photo-1598327276201-05d37595a74d?q=80&w=800&auto=format&fit=crop",
+    "description": "Android pur photos IA mises à jour longues."
+  },
+  {
+    "id": 5,
+    "name": "Galaxy S24",
+    "brand": "Samsung",
+    "storage": "256 Go",
+    "price": 145000,
+    "image": "/products/5-galaxy-s24.jpg",
+    "description": "Premium compact écran Dynamic AMOLED Galaxy AI."
+  },
+  {
+    "id": 6,
+    "name": "iPhone 14",
+    "brand": "Apple",
+    "storage": "128 Go",
+    "price": 155000,
+    "image": "/products/6-iphone-14.jpg",
+    "description": "Double capteur puce A15 excellente autonomie."
+  },
+  {
+    "id": 7,
+    "name": "Poco X6 Pro",
+    "brand": "Poco",
+    "storage": "256 Go",
+    "price": 52000,
+    "image": "/products/7-poco-x6.jpg",
+    "description": "Rapport qualité-prix écran 120 Hz charge rapide."
+  },
+  {
+    "id": 8,
+    "name": "OnePlus 12R",
+    "brand": "OnePlus",
+    "storage": "256 Go",
+    "price": 78000,
+    "image": "https://images.unsplash.com/photo-1585069144539-1dc3b51155e0?q=80&w=800&auto=format&fit=crop",
+    "description": "Performances gaming OxygenOS batterie 5500 mAh."
+  },
+  {
+    "id": 9,
+    "name": "Galaxy Z Flip5",
+    "brand": "Samsung",
+    "storage": "256 Go",
+    "price": 210000,
+    "image": "/products/9-galaxy-flip5.jpg",
+    "description": "Pliable compact écran externe pratique."
+  },
+  {
+    "id": 10,
+    "name": "Motorola Edge 40",
+    "brand": "Motorola",
+    "storage": "256 Go",
+    "price": 72000,
+    "image": "/products/10-edge-40.jpg",
+    "description": "Fin charge 68 W expérience Android légère."
+  }
+]

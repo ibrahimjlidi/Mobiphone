@@ -1,0 +1,11 @@
+id,name,brand,storage,price,image,description
+1,Galaxy A54 5G,Samsung,128 Go,62000,/products/1-galaxy-a54.jpg,Écran Super AMOLED 6.4 pouces triple capteur 50 MP. Idéal au quotidien.
+2,iPhone 15,Apple,128 Go,185000,/products/2-iphone-15.jpg,Puce A16 Bionic Dynamic Island et USB-C. Photos nettes.
+3,Redmi Note 13 Pro,Xiaomi,256 Go,48000,/products/3-redmi-note-13.jpg,Charge 67 W écran AMOLED 120 Hz capteur 200 MP.
+4,Pixel 8,Google,128 Go,98000,https://images.unsplash.com/photo-1598327276201-05d37595a74d?q=80&w=800&auto=format&fit=crop,Android pur photos IA mises à jour longues.
+5,Galaxy S24,Samsung,256 Go,145000,/products/5-galaxy-s24.jpg,Premium compact écran Dynamic AMOLED Galaxy AI.
+6,iPhone 14,Apple,128 Go,155000,/products/6-iphone-14.jpg,Double capteur puce A15 excellente autonomie.
+7,Poco X6 Pro,Poco,256 Go,52000,/products/7-poco-x6.jpg,Rapport qualité-prix écran 120 Hz charge rapide.
+8,OnePlus 12R,OnePlus,256 Go,78000,https://images.unsplash.com/photo-1585069144539-1dc3b51155e0?q=80&w=800&auto=format&fit=crop,Performances gaming OxygenOS batterie 5500 mAh.
+9,Galaxy Z Flip5,Samsung,256 Go,210000,/products/9-galaxy-flip5.jpg,Pliable compact écran externe pratique.
+10,Motorola Edge 40,Motorola,256 Go,72000,/products/10-edge-40.jpg,Fin charge 68 W expérience Android légère.
