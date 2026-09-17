@@ -5,7 +5,7 @@
     "brand": "Samsung",
     "storage": "128 Go",
     "price": 62000,
-    "image": "/products/1-galaxy-a54.jpg",
+    "image": "https://images.unsplash.com/photo-1511707171634-597466aa0278?q=80&w=800&auto=format&fit=crop",
     "description": "Écran Super AMOLED 6.4 pouces triple capteur 50 MP. Idéal au quotidien."
   },
   {
@@ -14,7 +14,7 @@
     "brand": "Apple",
     "storage": "128 Go",
     "price": 185000,
-    "image": "/products/2-iphone-15.jpg",
+    "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?q=80&w=800&auto=format&fit=crop",
     "description": "Puce A16 Bionic Dynamic Island et USB-C. Photos nettes."
   },
   {
@@ -23,7 +23,7 @@
     "brand": "Xiaomi",
     "storage": "256 Go",
     "price": 48000,
-    "image": "/products/3-redmi-note-13.jpg",
+    "image": "https://images.unsplash.com/photo-1556656793-08538906a9f8?q=80&w=800&auto=format&fit=crop",
     "description": "Charge 67 W écran AMOLED 120 Hz capteur 200 MP."
   },
   {
@@ -32,7 +32,7 @@
     "brand": "Google",
     "storage": "128 Go",
     "price": 98000,
-    "image": "https://images.unsplash.com/photo-1598327276201-05d37595a74d?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1565849904461-cc6c7acd68e7?q=80&w=800&auto=format&fit=crop",
     "description": "Android pur photos IA mises à jour longues."
   },
   {
@@ -41,7 +41,7 @@
     "brand": "Samsung",
     "storage": "256 Go",
     "price": 145000,
-    "image": "/products/5-galaxy-s24.jpg",
+    "image": "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?q=80&w=800&auto=format&fit=crop",
     "description": "Premium compact écran Dynamic AMOLED Galaxy AI."
   },
   {
@@ -50,7 +50,7 @@
     "brand": "Apple",
     "storage": "128 Go",
     "price": 155000,
-    "image": "/products/6-iphone-14.jpg",
+    "image": "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=800&auto=format&fit=crop",
     "description": "Double capteur puce A15 excellente autonomie."
   },
   {
@@ -59,7 +59,7 @@
     "brand": "Poco",
     "storage": "256 Go",
     "price": 52000,
-    "image": "/products/7-poco-x6.jpg",
+    "image": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop",
     "description": "Rapport qualité-prix écran 120 Hz charge rapide."
   },
   {
@@ -68,7 +68,7 @@
     "brand": "OnePlus",
     "storage": "256 Go",
     "price": 78000,
-    "image": "https://images.unsplash.com/photo-1585069144539-1dc3b51155e0?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1512499617640-c2f999098c01?q=80&w=800&auto=format&fit=crop",
     "description": "Performances gaming OxygenOS batterie 5500 mAh."
   },
   {
@@ -77,7 +77,7 @@
     "brand": "Samsung",
     "storage": "256 Go",
     "price": 210000,
-    "image": "/products/9-galaxy-flip5.jpg",
+    "image": "https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=800&auto=format&fit=crop",
     "description": "Pliable compact écran externe pratique."
   },
   {
@@ -86,7 +86,7 @@
     "brand": "Motorola",
     "storage": "256 Go",
     "price": 72000,
-    "image": "/products/10-edge-40.jpg",
+    "image": "https://images.unsplash.com/photo-1592286927505-2fd0b1f3f2f3?q=80&w=800&auto=format&fit=crop",
     "description": "Fin charge 68 W expérience Android légère."
   }
 ]

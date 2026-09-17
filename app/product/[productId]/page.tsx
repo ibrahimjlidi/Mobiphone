@@ -8,8 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import products from "@/data/products.json";
-import { formatPrice } from "@/lib/formatPrice";
 import { cn } from "@/lib/utils";
 import {
   Check,
@@ -26,6 +26,7 @@ import { useState } from "react";
 
 export default function Product() {
   const { addToCart } = useCart();
+  const { formatPrice } = useCurrency();
   const { productId } = useParams();
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);

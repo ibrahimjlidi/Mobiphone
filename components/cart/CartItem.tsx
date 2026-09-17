@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/CartContext";
-import { formatPrice } from "@/lib/formatPrice";
+import { useCurrency } from "@/context/CurrencyContext";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 
@@ -20,6 +20,7 @@ interface CartItemProps {
 
 export default function CartItem({ item, isLast }: CartItemProps) {
   const { removeFromCart, updateQuantity } = useCart();
+  const { formatPrice } = useCurrency();
 
   return (
     <div>

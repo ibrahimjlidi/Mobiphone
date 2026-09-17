@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/constants";
-import { formatPrice } from "@/lib/formatPrice";
 import { CreditCard, Heart, Shield, Truck } from "lucide-react";
 import Link from "next/link";
 
 export default function OrderSummary() {
   const { cart } = useCart();
+  const { formatPrice } = useCurrency();
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
