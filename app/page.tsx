@@ -1,5 +1,6 @@
 import ProductCatalog from "@/components/home/ProductCatalog";
 import { shop } from "@/config/shop";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -12,7 +13,9 @@ export default function Home() {
           {shop.description}
         </p>
       </div>
-      <ProductCatalog />
+      <Suspense fallback={<div className="min-h-[24rem]" />}>
+        <ProductCatalog />
+      </Suspense>
     </div>
   );
 }
