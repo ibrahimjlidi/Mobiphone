@@ -143,12 +143,12 @@ export default function Header() {
             </Link>
 
             <div className="hidden sm:flex items-center space-x-2">
-              <Link href="/">
+              <Link href="/login">
                 <Button variant="ghost" size="sm" className="text-sm">
                   Connexion
                 </Button>
               </Link>
-              <Link href="/">
+              <Link href="/register">
                 <Button size="sm" variant="default" className="text-sm">
                   Inscription
                 </Button>
