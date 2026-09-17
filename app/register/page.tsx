@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AuthShell from "@/components/auth/AuthShell";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
-import { ArrowLeft, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -44,19 +44,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-5rem)] bg-gradient-to-br from-primary/10 via-background to-accent/20 px-4 py-12 sm:py-16">
-      <div className="mx-auto max-w-md">
-        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" />
-          Retour à la boutique
-        </Link>
-
-        <Card>
-          <CardHeader className="space-y-2 text-center">
-            <CardTitle className="text-2xl">Créer votre compte</CardTitle>
-            <CardDescription>Enregistrez-vous pour suivre vos commandes plus facilement.</CardDescription>
-          </CardHeader>
-          <CardContent>
+    <AuthShell
+      title="Créer votre compte"
+      description="Enregistrez-vous pour suivre vos commandes plus facilement."
+    >
             {!isConfigured ? (
               <p className="rounded-md bg-destructive/10 p-4 text-sm text-destructive">
                 L&apos;authentification n&apos;est pas configurée. Ajoutez les variables Supabase dans .env.local.
@@ -109,9 +100,6 @@ export default function RegisterPage() {
                 Se connecter
               </Link>
             </p>
-          </CardContent>
-        </Card>
-      </div>
-    </main>
+    </AuthShell>
   );
 }

@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AuthShell from "@/components/auth/AuthShell";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
-import { ArrowLeft, LockKeyhole, Smartphone } from "lucide-react";
+import { LockKeyhole } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -33,24 +33,10 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-5rem)] bg-gradient-to-br from-primary/10 via-background to-accent/20 px-4 py-12 sm:py-16">
-      <div className="mx-auto max-w-md">
-        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" />
-          Retour à la boutique
-        </Link>
-
-        <Card>
-          <CardHeader className="space-y-4 text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Smartphone className="h-6 w-6" />
-            </div>
-            <div className="space-y-2">
-              <CardTitle className="text-2xl">Content de vous revoir</CardTitle>
-              <CardDescription>Connectez-vous à votre compte MobilTech.</CardDescription>
-            </div>
-          </CardHeader>
-          <CardContent>
+    <AuthShell
+      title="Connexion"
+      description="Content de vous revoir"
+    >
             {!isConfigured ? (
               <p className="rounded-md bg-destructive/10 p-4 text-sm text-destructive">
                 L&apos;authentification n&apos;est pas configurée. Ajoutez les variables Supabase dans .env.local.
@@ -75,8 +61,12 @@ export default function LoginPage() {
                   Mot de passe
                   <Input type="password" name="password" required minLength={6} autoComplete="current-password" placeholder="Votre mot de passe" />
                 </label>
-                <div className="flex justify-end">
-                  <Link href="/login" className="text-sm text-primary hover:underline">
+                <div className="flex items-center justify-between gap-3">
+                  <label className="flex items-center gap-2 text-sm text-white/80">
+                    <input type="checkbox" name="remember" className="h-4 w-4 accent-white" />
+                    Se souvenir de moi
+                  </label>
+                  <Link href="/login" className="text-sm hover:underline">
                     Mot de passe oublié ?
                   </Link>
                 </div>
@@ -94,9 +84,6 @@ export default function LoginPage() {
                 Créer un compte
               </Link>
             </p>
-          </CardContent>
-        </Card>
-      </div>
-    </main>
+    </AuthShell>
   );
 }
